@@ -34,8 +34,6 @@ st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state
 # Add logo to sidebar
 st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png')
 
-st.sidebar.title("EinsteinAI")
-
 st.sidebar.markdown("##### Developed by Cerebrovascular Research Lab at Albert Einstein College of Medicine")
 
 tool_selection = st.sidebar.radio("Select a tool:", [
