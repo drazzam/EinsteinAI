@@ -1,5 +1,4 @@
 import streamlit as st
-import openai
 import docx
 from docx.shared import Pt
 
