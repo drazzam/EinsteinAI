@@ -32,8 +32,7 @@ def save_cover_letter_to_docx(cover_letter, filename):
 st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state="expanded")
 
 # Add logo to sidebar
-# Get theme mode from Streamlit  
-theme = st.sidebar.radio("Theme", ["Light", "Dark"])
+theme = get_theme_config()["theme"]
 
 if theme == "Light":
     st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png')
