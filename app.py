@@ -84,3 +84,4 @@ if st.sidebar.button("Show About"):
     st.sidebar.markdown(
         "This application was developed by Cerebrovascular Research Lab at Albert Einstein College of Medicine."
     )
+    
