@@ -20,7 +20,10 @@ if st.sidebar.button("Connect API"):
     st.success("API connected!")
 if st.sidebar.button("Switch theme"):
     # Code to switch between dark mode and light mode
-    st.write("Theme switched!")
+    if st.get_theme() == "dark":
+        st.set_theme("light")
+    else:
+        st.set_theme("dark")
 
 # Define the about menu
 st.sidebar.subheader("About")
