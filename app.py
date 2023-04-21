@@ -20,7 +20,7 @@ if st.sidebar.button("Connect API"):
     st.success("API connected!")
 if st.sidebar.button("Switch theme"):
     # Code to switch between dark mode and light mode
-    if st.get_theme() == "dark":
+    if st.theme() == "dark":
         st.set_theme("light")
     else:
         st.set_theme("dark")
