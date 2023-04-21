@@ -35,7 +35,7 @@ st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state
 
 # Add logo to sidebar based on theme
 theme = st.get_option("theme.primaryColor")
-if theme == "dark":
+if theme == "black":
     st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/white_logo.png')
 else:
     st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png')
