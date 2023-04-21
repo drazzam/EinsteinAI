@@ -31,6 +31,9 @@ def save_cover_letter_to_docx(cover_letter, filename):
 # Streamlit app
 st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state="expanded")
 
+# Add logo to sidebar
+st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png')
+
 st.sidebar.title("EinsteinAI")
 
 st.sidebar.markdown("##### Developed by Cerebrovascular Research Lab at Albert Einstein College of Medicine")
