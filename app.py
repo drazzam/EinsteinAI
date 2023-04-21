@@ -18,12 +18,7 @@ api_key = st.sidebar.text_input("ChatGPT API Key")
 if st.sidebar.button("Connect API"):
     # Code to connect to the ChatGPT API using the provided key
     st.success("API connected!")
-if st.sidebar.button("Switch theme"):
-    # Code to switch between dark mode and light mode
-    if st.theme() == "dark":
-        st.set_theme("light")
-    else:
-        st.set_theme("dark")
+
 
 # Define the about menu
 st.sidebar.subheader("About")
