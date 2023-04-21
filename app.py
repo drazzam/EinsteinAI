@@ -1,5 +1,3 @@
-pip install --upgrade streamlit
-
 import streamlit as st
 
 # Set the app title and icon
