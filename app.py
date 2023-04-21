@@ -1,57 +1,110 @@
 import streamlit as st
-
-# Set the app title and icon
-st.set_page_config(page_title="EinsteinAI", page_icon=":brain:")
-
-# Define the sidebar menu
-menu_items = ["Risk of Bias Assessment Tool", "Cover Letter Generator", 
-              "Systematic Review and Meta-analysis Ideas Generator", 
-              "Research Methodology Advisor, Reviewer and Proofreading Tool", 
-              "Statistical Plan Consultant Tool", "Meta-analysis Statistical Plan Consultant", 
-              "Sample Size Calculator Tool", "Abstract and Keywords Generator", 
-              "Virtual Librarian Tool", "Assistant Extraction Tool"]
-selected_item = st.sidebar.selectbox("Select a tool", menu_items)
-
-# Define the settings menu
-st.sidebar.subheader("Settings")
-api_key = st.sidebar.text_input("ChatGPT API Key")
-if st.sidebar.button("Connect API"):
-    # Code to connect to the ChatGPT API using the provided key
-    st.success("API connected!")
+import openai
+import docx
+from docx.shared import Pt
 
 
-# Define the about menu
-st.sidebar.subheader("About")
-st.sidebar.write("This application was developed by Cerebrovascular Research Lab at Albert Einstein College of Medicine")
+def generate_cover_letter(title, journal, abstract, author):
+    # Add GPT API call here to generate cover letter based on the input
+    # For now, we will return a simple cover letter template
+    cover_letter = f"""Dear Editor,
 
-# Render the selected tool
-if selected_item == "Risk of Bias Assessment Tool":
-    # Code to render the Risk of Bias Assessment Tool
-    st.write("Risk of Bias Assessment Tool")
-elif selected_item == "Cover Letter Generator":
-    # Code to render the Cover Letter Generator
-    st.write("Cover Letter Generator")
-elif selected_item == "Systematic Review and Meta-analysis Ideas Generator":
-    # Code to render the Systematic Review and Meta-analysis Ideas Generator
-    st.write("Systematic Review and Meta-analysis Ideas Generator")
-elif selected_item == "Research Methodology Advisor, Reviewer and Proofreading Tool":
-    # Code to render the Research Methodology Advisor, Reviewer and Proofreading Tool
-    st.write("Research Methodology Advisor, Reviewer and Proofreading Tool")
-elif selected_item == "Statistical Plan Consultant Tool":
-    # Code to render the Statistical Plan Consultant Tool
-    st.write("Statistical Plan Consultant Tool")
-elif selected_item == "Meta-analysis Statistical Plan Consultant":
-    # Code to render the Meta-analysis Statistical Plan Consultant
-    st.write("Meta-analysis Statistical Plan Consultant")
-elif selected_item == "Sample Size Calculator Tool":
-    # Code to render the Sample Size Calculator Tool
-    st.write("Sample Size Calculator Tool")
-elif selected_item == "Abstract and Keywords Generator":
-    # Code to render the Abstract and Keywords Generator
-    st.write("Abstract and Keywords Generator")
-elif selected_item == "Virtual Librarian Tool":
-    # Code to render the Virtual Librarian Tool
-    st.write("Virtual Librarian Tool")
-elif selected_item == "Assistant Extraction Tool":
-    # Code to render the Assistant Extraction Tool
-    st.write("Assistant Extraction Tool")
+I am submitting our manuscript entitled "{title}" for consideration for publication in {journal}. Our paper presents the following research:
+
+{abstract}
+
+We believe our research significantly contributes to the field and would be of interest to the readers of {journal}. We kindly request you to consider our manuscript for publication.
+
+Thank you for your time and consideration.
+
+Sincerely,
+{author}
+"""
+
+    return cover_letter
+
+
+def save_cover_letter_to_docx(cover_letter, filename):
+    doc = docx.Document()
+    doc.add_paragraph(cover_letter)
+    doc.save(filename)
+
+
+# Streamlit app
+st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state="expanded")
+
+st.sidebar.title("EinsteinAI")
+
+st.sidebar.markdown("##### Developed by Cerebrovascular Research Lab at Albert Einstein College of Medicine")
+
+tool_selection = st.sidebar.radio("Select a tool:", [
+    "Risk of Bias Assessment Tool",
+    "Cover Letter Generator",
+    "Systematic Review and Meta-analysis Ideas Generator",
+    "Research Methodology Advisor, Reviewer and Proofreading Tool",
+    "Statistical Plan Consultant Tool",
+    "Meta-analysis Statistical Plan Consultant",
+    "Sample Size Calculator Tool",
+    "Abstract and Keywords Generator",
+    "Virtual Librarian Tool",
+    "Assistant Extraction Tool",
+])
+
+if tool_selection == "Cover Letter Generator":
+    st.title("Cover Letter Generator")
+
+    title = st.text_input("Enter the title of the manuscript:")
+    journal = st.text_input("Enter the name of the targeted journal:")
+    abstract = st.text_area("Enter the abstract of the paper:")
+    author = st.text_input("Enter the name of the corresponding author:")
+
+    if st.button("Generate Cover Letter"):
+        if title and journal and abstract and author:
+            cover_letter = generate_cover_letter(title, journal, abstract, author)
+            st.write(cover_letter.replace("\n", "  \n"))
+
+            filename = "generated_cover_letter.docx"
+            save_cover_letter_to_docx(cover_letter, filename)
+            st.markdown(f"[Download Cover Letter]({filename})", unsafe_allow_html=True)
+        else:
+            st.error("Please fill in all the fields.")
+
+st.sidebar.markdown("### API Key")
+api_key = st.sidebar.text_input("Enter your ChatGPT API key:", type="password")
+if api_key:
+    openai.api_key = api_key
+
+st.sidebar.markdown("### Theme")
+theme = st.sidebar.radio("Choose a theme:", ["Light", "Dark"])
+if theme == "Dark":
+    st.markdown(
+        """<style>
+body {
+    background-color: #1f1f1f;
+    color: #ffffff;
+}
+.sidebar-content {
+    background-color: #1f1f1f;
+}
+</style>""",
+        unsafe_allow_html=True,
+    )
+else:
+    st.markdown(
+        """<style>
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+.sidebar-content {
+    background-color: #ffffff;
+}
+</style>""",
+        unsafe_allow_html=True,
+    )
+
+st.sidebar.markdown("### About")
+if st.sidebar.button("Show About"):
+    st.sidebar.markdown(
+        "This application was developed by Cerebrovascular Research Lab at Albert Einstein College of Medicine."
+    )
