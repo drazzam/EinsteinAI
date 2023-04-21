@@ -87,35 +87,6 @@ api_key = st.sidebar.text_input("Enter your ChatGPT API key:", type="password")
 if api_key:
     openai.api_key = api_key
 
-st.sidebar.markdown("### Theme")
-theme = st.sidebar.radio("Choose a theme:", ["Light", "Dark"])
-if theme == "Dark":
-    st.markdown(
-        """<style>
-body {
-    background-color: #1f1f1f;
-    color: #ffffff;
-}
-.sidebar-content {
-    background-color: #1f1f1f;
-}
-</style>""",
-        unsafe_allow_html=True,
-    )
-else:
-    st.markdown(
-        """<style>
-body {
-    background-color: #ffffff;
-    color: #000000;
-}
-.sidebar-content {
-    background-color: #ffffff;
-}
-</style>""",
-        unsafe_allow_html=True,
-    )
-
 st.sidebar.markdown("### About")
 if st.sidebar.button("Show About"):
     st.sidebar.markdown(
