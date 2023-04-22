@@ -46,8 +46,10 @@ custom_css = r"""
 """
 st.write(custom_css, unsafe_allow_html=True)
 
-st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png', css_classes="light-logo")
-st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/white_logo.png', css_classes="dark-logo")
+light_logo_url = 'https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png'
+dark_logo_url = 'https://raw.githubusercontent.com/drazzam/EinsteinAI/main/white_logo.png'
+
+st.sidebar.markdown(f'<img src="{light_logo_url}" class="light-logo" style="max-width: 100%;"><img src="{dark_logo_url}" class="dark-logo" style="max-width: 100%; display: none;">', unsafe_allow_html=True)
 
 st.sidebar.markdown("##### Developed by Cerebrovascular Research Lab at Albert Einstein College of Medicine")
 
