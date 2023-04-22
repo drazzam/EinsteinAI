@@ -110,11 +110,11 @@ if tool_selection == "Assistant Extraction Tool":
     st.markdown("Upload the research paper as a PDF file:")
     pdf_file = st.file_uploader("", type=["pdf"])
 
-    st.markdown("Enter the desired outcomes to be extracted, separated by commas:")
+    st.markdown("Enter The Outcomes To Be Extracted From The Paper (separated by commas):")
     outcomes_input = st.text_input("", key="outcomes_input")
     outcomes = [outcome.strip() for outcome in outcomes_input.split(",")]
 
-    st.markdown("Enter the targeted populations for the outcomes within the paper, separated by commas:")
+    st.markdown("Enter The Targeted Populations For The Outcomes Within The Paper (separated by commas):")
     groups_input = st.text_input("", key="groups_input")
     groups = [group.strip() for group in groups_input.split(",")]
 
