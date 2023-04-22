@@ -25,11 +25,6 @@ st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state
 # Add logo
 st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png')
 
-light_logo_url = 'https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png'
-dark_logo_url = 'https://raw.githubusercontent.com/drazzam/EinsteinAI/main/white_logo.png'
-
-st.sidebar.markdown(f'<img src="{light_logo_url}" class="light-logo" style="max-width: 100%;"><img src="{dark_logo_url}" class="dark-logo" style="max-width: 100%; display: none;">', unsafe_allow_html=True)
-
 st.sidebar.markdown("##### Developed by Cerebrovascular Research Lab at Albert Einstein College of Medicine")
 
 tool_selection = st.sidebar.radio("Select a tool:", [
