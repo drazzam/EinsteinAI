@@ -27,8 +27,6 @@ def save_cover_letter_to_docx(cover_letter, filename):
     doc.add_paragraph(cover_letter)
     doc.save(filename)
 
-st.write(custom_css, unsafe_allow_html=True)
-
     
 # Streamlit app
 st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state="expanded")
@@ -48,6 +46,7 @@ custom_css = r"""
     }
 </style>
 """
+st.write(custom_css, unsafe_allow_html=True)
 
 theme = st.get_option("theme.primaryColor")
 if theme == "black":
