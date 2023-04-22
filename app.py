@@ -1,7 +1,6 @@
 import streamlit as st
 import docx
 from docx.shared import Pt
-import docx
 import openai
 import io
 import base64
