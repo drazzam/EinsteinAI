@@ -3,56 +3,51 @@ import docx
 from docx.shared import Pt
 
 def generate_cover_letter(title, journal, abstract, author):
-    # Add GPT API call here to generate cover letter based on the input
-    # For now, we will return a simple cover letter template
     cover_letter = f"""Dear Editor,
-
 I am submitting our manuscript entitled "{title}" for consideration for publication in {journal}. Our paper presents the following research:
-
 {abstract}
-
 We believe our research significantly contributes to the field and would be of interest to the readers of {journal}. We kindly request you to consider our manuscript for publication.
-
 Thank you for your time and consideration.
-
 Sincerely,
 {author}
 """
 
     return cover_letter
 
-
 def save_cover_letter_to_docx(cover_letter, filename):
     doc = docx.Document()
     doc.add_paragraph(cover_letter)
     doc.save(filename)
 
-    
 # Streamlit app
 st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state="expanded")
 
-# Add logo to sidebar
-
 # Add logo to sidebar based on theme
-# Custom CSS to handle the logo switch based on theme
-
 custom_css = r"""
 <style>
-    body.light-mode .sidebar-content {
+    .sidebar .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sidebar img {
         display: none;
     }
-    body.dark-mode .sidebar-content {
+
+    body.light-mode .sidebar img.light-logo {
+        display: block;
+    }
+
+    body.dark-mode .sidebar img.dark-logo {
         display: block;
     }
 </style>
 """
 st.write(custom_css, unsafe_allow_html=True)
 
-theme = st.get_option("theme.primaryColor")
-if theme == "black":
-  st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/white_logo.png')
-else:
-  st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png')
+st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png', css_classes="light-logo")
+st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/white_logo.png', css_classes="dark-logo")
 
 st.sidebar.markdown("##### Developed by Cerebrovascular Research Lab at Albert Einstein College of Medicine")
 
@@ -98,4 +93,3 @@ if st.sidebar.button("Show About"):
     st.sidebar.markdown(
         "This application was developed by Cerebrovascular Research Lab at Albert Einstein College of Medicine."
     )
-    
