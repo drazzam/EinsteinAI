@@ -1,10 +1,10 @@
 import streamlit as st
 import docx
-from docx.shared import Pt
-import openai
 import io
 import base64
-from pdf_extraction import process_pdf
+import openai
+import PyPDF2
+from docx.shared import Pt
 
 def generate_cover_letter(title, journal, abstract, author):
     cover_letter = f"""Dear Editor,
@@ -55,7 +55,15 @@ def save_extracted_data_to_docx(extracted_data, filename):
             doc.add_paragraph(f"{outcome}: {value}")
 
     doc.save(filename)    
-    
+
+def process_pdf(pdf_file):
+    pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+    text = ""
+    for page_num in range(pdf_reader.numPages):
+        text += pdf_reader.getPage(page_num).extractText()
+
+    return text
+
 # Streamlit app
 st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state="expanded")
 
