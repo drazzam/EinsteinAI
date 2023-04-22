@@ -67,5 +67,6 @@ if api_key:
 st.sidebar.markdown("### About")
 if st.sidebar.button("Show About"):
     st.sidebar.markdown(
-        "This Application Was Developed By:\n Ahmed Y. Azzam, MD, MEng\n Muhammed Amir Essibayi, MD\n Under Supervision of Cerebrovascular Research Lab Principal Investigator:\n David Altschul, MD"
+        "This Application Was Developed By:<br> Ahmed Y. Azzam, MD, MEng<br> Muhammed Amir Essibayi, MD<br> Under Supervision of Cerebrovascular Research Lab Principal Investigator:<br> David Altschul, MD"
     )
+
