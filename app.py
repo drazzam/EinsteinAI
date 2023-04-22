@@ -22,29 +22,8 @@ def save_cover_letter_to_docx(cover_letter, filename):
 # Streamlit app
 st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state="expanded")
 
-# Add logo to sidebar based on theme
-custom_css = r"""
-<style>
-    .sidebar .sidebar-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .sidebar img {
-        display: none;
-    }
-
-    body.light-mode .sidebar img.light-logo {
-        display: block;
-    }
-
-    body.dark-mode .sidebar img.dark-logo {
-        display: block;
-    }
-</style>
-"""
-st.write(custom_css, unsafe_allow_html=True)
+# Add logo
+st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png')
 
 light_logo_url = 'https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png'
 dark_logo_url = 'https://raw.githubusercontent.com/drazzam/EinsteinAI/main/white_logo.png'
