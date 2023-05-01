@@ -113,56 +113,12 @@ if tool_selection == "Research Advisor Tool":
 
         return prompt
 
-    # Function to create a Word document with the prompt
-    def create_word_document(prompt):
-        response = requests.get("https://github.com/drazzam/EinsteinAI/blob/main/templates/Research_Advisor.docx?raw=true")
-        doc = docx.Document(BytesIO(response.content))
-        p = doc.add_paragraph()
-        p.add_run("\n\n")
-        p.add_run(prompt).bold = True
-        p.space_before = Pt(12)
-        p.space_after = Pt(12)
-        p.add_run().add_break(WD_BREAK.PAGE)
-        return doc
-
-    # Function to export the Word document to a PDF
-    def export_to_pdf(doc):
-        options = {
-            'quiet': '',
-            'dpi': 300,
-        }
-        filename = "generated_prompt.pdf"
-        docx_filename = "generated_prompt.docx"
-        doc.save(docx_filename)
-        pdfkit.from_file(docx_filename, filename, options=options)
-        return filename
-
     if generate_button:
         if manuscript_title and research_paper_type and section_to_criticize and section:
             # Generate the prompt
             prompt = create_prompt(manuscript_title, research_paper_type, section_to_criticize)
             st.write("Generated Prompt:")
             st.write(prompt)
-
-            # Offer download options
-            download_option = st.selectbox("Download as:", ["Word Document", "PDF"])
-
-            # Create the Word document and download
-            doc = create_word_document(prompt)
-
-            if download_option == "Word Document":
-                with BytesIO() as docx_data:
-                    doc.save(docx_data)
-                    b64 = base64.b64encode(docx_data.getvalue()).decode()
-                    href = f'<a href="data:application/octet-stream;base64,{b64}" download="generated_prompt.docx">Download as Word Document</a>'
-                    st.markdown(href, unsafe_allow_html=True)
-
-            if download_option == "PDF":
-                pdf_filename = export_to_pdf(doc)
-                with open(pdf_filename, "rb") as pdf_data:
-                    b64 = base64.b64encode(pdf_data.read()).decode()
-                    href = f'<a href="data:application/octet-stream;base64,{b64}" download="generated_prompt.pdf">Download as PDF</a>'
-                    st.markdown(href, unsafe_allow_html=True)
         else:
             st.error("Please fill in all the input fields before generating the prompt.")
 
