@@ -97,6 +97,7 @@ if tool_selection == "Research Advisor Tool":
  manuscript_title = st.text_input("Manuscript Title:")
  research_paper_type = st.text_input("Type of Research Paper:")
  section_to_criticize = st.text_input("The Section Within The Paper To Be Criticized:")
+ section = st.text_input("Paste The Section From Manuscript Here:")
 
  # Button to generate the prompt
  generate_button = st.button("Generate Prompt")
@@ -108,6 +109,7 @@ if tool_selection == "Research Advisor Tool":
  Could you criticize and review the following {section_to_criticize} section in the manuscript draft, and provide a detailed feedback report on how to improve it from all aspects including: appropriate writing and proofreading, appropriate methodology and sequence, and the science within the section itself. Generate a comprehensive professional report and recommendations for this manuscript, please!
 
  That's the {section_to_criticize} section:'''
+    {section}
 
      return prompt
 
