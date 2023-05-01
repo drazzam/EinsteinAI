@@ -13,7 +13,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.text import WD_BREAK
 import requests
 
-# Streamlit app
+# Set page configuration at the beginning of the script
 st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state="expanded", cache_clear_on_refresh=True)
 
 # Add logo
