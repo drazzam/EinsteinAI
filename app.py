@@ -96,8 +96,8 @@ if tool_selection == "Research Advisor Tool":
 
  # Input fields
  manuscript_title = st.text_input("Manuscript Title:")
- research_paper_type = st.text_input("Type of Research Paper:")
- section_to_criticize = st.text_input("The Section Within The Paper To Be Criticized:")
+ research_paper_type = st.text_input("Type of Research Paper: (e.g. systematic review, meta-analysis, review article, retrospective study")
+ section_to_criticize = st.text_input("The Section Within The Paper To Be Criticized: (e.g. introduction, methods, results, discussion")
  section = st.text_input("Paste The Section From Manuscript Here:")
 
  # Button to generate the prompt
