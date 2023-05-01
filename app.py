@@ -91,73 +91,73 @@ tool_selection = st.sidebar.radio("Select a tool:", [
 ])
 
 if tool_selection == "Research Advisor Tool":
-st.title("Research Advisor Tool")
+ st.title("Research Advisor Tool")
 
-# Input fields
-manuscript_title = st.text_input("Manuscript Title:")
-research_paper_type = st.text_input("Type of Research Paper:")
-section_to_criticize = st.text_input("The Section Within The Paper To Be Criticized:")
+ # Input fields
+ manuscript_title = st.text_input("Manuscript Title:")
+ research_paper_type = st.text_input("Type of Research Paper:")
+ section_to_criticize = st.text_input("The Section Within The Paper To Be Criticized:")
 
-# Button to generate the prompt
-generate_button = st.button("Generate Prompt")
+ # Button to generate the prompt
+ generate_button = st.button("Generate Prompt")
 
-# Function to create the prompt
-def create_prompt(manuscript_title, research_paper_type, section_to_criticize):
-    prompt = f'''This a draft manuscript proposed for a research paper entitled "{manuscript_title}" which is a {research_paper_type} article.
+ # Function to create the prompt
+ def create_prompt(manuscript_title, research_paper_type, section_to_criticize):
+     prompt = f'''This a draft manuscript proposed for a research paper entitled "{manuscript_title}" which is a {research_paper_type} article.
 
-Could you criticize and review the following {section_to_criticize} section in the manuscript draft, and provide a detailed feedback report on how to improve it from all aspects including: appropriate writing and proofreading, appropriate methodology and sequence, and the science within the section itself. Generate a comprehensive professional report and recommendations for this manuscript, please!
+ Could you criticize and review the following {section_to_criticize} section in the manuscript draft, and provide a detailed feedback report on how to improve it from all aspects including: appropriate writing and proofreading, appropriate methodology and sequence, and the science within the section itself. Generate a comprehensive professional report and recommendations for this manuscript, please!
 
-That's the {section_to_criticize} section:'''
+ That's the {section_to_criticize} section:'''
 
-    return prompt
+     return prompt
 
-# Function to create a Word document with the prompt
-def create_word_document(prompt):
-    doc = docx.Document("https://github.com/drazzam/EinsteinAI/blob/main/templates/Research_Advisor.docx?raw=true")
-    p = doc.add_paragraph()
-    p.add_run("\n\n")
-    p.add_run(prompt).bold = True
-    p.space_before = Pt(12)
-    p.space_after = Pt(12)
-    p.add_run().add_break(WD_BREAK.PAGE)
-    return doc
+ # Function to create a Word document with the prompt
+ def create_word_document(prompt):
+     doc = docx.Document("https://github.com/drazzam/EinsteinAI/blob/main/templates/Research_Advisor.docx?raw=true")
+     p = doc.add_paragraph()
+     p.add_run("\n\n")
+     p.add_run(prompt).bold = True
+     p.space_before = Pt(12)
+     p.space_after = Pt(12)
+     p.add_run().add_break(WD_BREAK.PAGE)
+     return doc
 
-# Function to export the Word document to a PDF
-def export_to_pdf(doc):
-    options = {
-        'quiet': '',
-        'dpi': 300,
-    }
-    filename = "generated_prompt.pdf"
-    docx_filename = "generated_prompt.docx"
-    doc.save(docx_filename)
-    pdfkit.from_file(docx_filename, filename, options=options)
-    return filename
+ # Function to export the Word document to a PDF
+ def export_to_pdf(doc):
+     options = {
+         'quiet': '',
+         'dpi': 300,
+     }
+     filename = "generated_prompt.pdf"
+     docx_filename = "generated_prompt.docx"
+     doc.save(docx_filename)
+     pdfkit.from_file(docx_filename, filename, options=options)
+     return filename
 
-if generate_button:
-    # Generate the prompt
-    prompt = create_prompt(manuscript_title, research_paper_type, section_to_criticize)
-    st.write(prompt)
+ if generate_button:
+     # Generate the prompt
+     prompt = create_prompt(manuscript_title, research_paper_type, section_to_criticize)
+     st.write(prompt)
 
-    # Offer download options
-    download_option = st.selectbox("Download as:", ["Word Document", "PDF"])
+     # Offer download options
+     download_option = st.selectbox("Download as:", ["Word Document", "PDF"])
 
-    # Create the Word document and download
-    doc = create_word_document(prompt)
+     # Create the Word document and download
+     doc = create_word_document(prompt)
 
-    if download_option == "Word Document":
-        with BytesIO() as docx_data:
-            doc.save(docx_data)
-            b64 = base64.b64encode(docx_data.getvalue()).decode()
-            href = f'<a href="data:application/octet-stream;base64,{b64}" download="generated_prompt.docx">Download as Word Document</a>'
-            st.markdown(href, unsafe_allow_html=True)
+     if download_option == "Word Document":
+         with BytesIO() as docx_data:
+             doc.save(docx_data)
+             b64 = base64.b64encode(docx_data.getvalue()).decode()
+             href = f'<a href="data:application/octet-stream;base64,{b64}" download="generated_prompt.docx">Download as Word Document</a>'
+             st.markdown(href, unsafe_allow_html=True)
 
-    if download_option == "PDF":
-        pdf_filename = export_to_pdf(doc)
-        with open(pdf_filename, "rb") as pdf_data:
-            b64 = base64.b64encode(pdf_data.read()).decode()
-            href = f'<a href="data:application/octet-stream;base64,{b64}" download="generated_prompt.pdf">Download as PDF</a>'
-            st.markdown(href, unsafe_allow_html=True)
+     if download_option == "PDF":
+         pdf_filename = export_to_pdf(doc)
+         with open(pdf_filename, "rb") as pdf_data:
+             b64 = base64.b64encode(pdf_data.read()).decode()
+             href = f'<a href="data:application/octet-stream;base64,{b64}" download="generated_prompt.pdf">Download as PDF</a>'
+             st.markdown(href, unsafe_allow_html=True)
 
 if tool_selection == "Assistant Extraction Tool":
     st.title("Assistant Extraction Tool")
