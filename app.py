@@ -66,11 +66,13 @@ if tool_selection == "Research Advisor Tool":
             copy_button = st.button("Copy Generated Prompt to Clipboard")
             if copy_button:
                 st.caching.cache.clear_cache()  # To avoid clipboard caching issue
-                st.experimental_set_query_params()  # Reset the query params to avoid copying multiple times
                 st.copy(prompt)  # Copy the text to the clipboard
                 st.success("Generated Prompt copied to clipboard!")
         else:
             st.error("Please fill in all the input fields before generating the prompt.")
+        
+    # Configure the app to prevent caching and to reset query parameters after copying
+    st.set_page_config(cache_clear_on_refresh=True, initial_sidebar_state="auto")
 
     
 st.sidebar.markdown("### About")
