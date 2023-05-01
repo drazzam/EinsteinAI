@@ -92,6 +92,7 @@ tool_selection = st.sidebar.radio("Select a tool:", [
 
 if tool_selection == "Research Advisor Tool":
  st.title("Research Advisor Tool")
+ st.write("Optimized For ChatGPT (GPT-4)")
 
  # Input fields
  manuscript_title = st.text_input("Manuscript Title:")
