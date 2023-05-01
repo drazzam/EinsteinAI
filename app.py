@@ -31,6 +31,43 @@ tool_selection = st.sidebar.radio("Select a tool:", [
     "Funding Opportunities Finder",
 ])
 
+if tool_selection == "Medical Trends Analyzer":
+    st.title("Medical Trends Analyzer")
+    st.write("Optimized for Microsoft Bing Chat")
+    
+    def copy_text_to_clipboard(text):
+        b64_text = base64.b64encode(text.encode()).decode()
+        components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
+        <button onclick="copyTextToClipboard()" style="background-color: #010514; color: white; border-radius: 5px; padding: 0.5em 1em; font-size: 1em;">Copy Generated Prompt to Clipboard</button>
+        <script>
+        function copyTextToClipboard() {{
+        var copyText = document.getElementById("text_to_copy");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        }}
+        </script>''', height=60
+                           
+     # Input fields
+     topic= st.text_input("Enter The Topic of Interest: (e.g. Cerebral aneurysms coiling)"
+      
+     # Button to generate the prompt
+     generate_button = st.button("Generate Prompt")
+                          
+     def create_prompt(topic):
+          prompt = f'''Hello Bing, I'm looking for information on {topic}. Can you please provide me with the latest research and industry trends from the past year, including advances in interventional techniques, devices, and medications? Additionally, I'm interested in learning about any promising trends and innovative treatments that are expected to gain traction in the future. Please provide me with a comprehensive list of impactful and promising developments in this field, including any emerging technologies or novel approaches that are currently being researched or developed.'''
+          return prompt
+
+     if generate_button:
+       if manuscript_title and research_paper_type and section_to_criticize and section:
+           # Generate the prompt
+           prompt = create_prompt(topic)
+           # Display the prompt in a textbox and add a button to copy its content
+           prompt_textbox = st.text_area("Generated Prompt:", value=prompt, height=150)
+           copy_text_to_clipboard(prompt)
+       else:
+           st.error("Please fill in all the input fields before generating the prompt.")
+                          
 if tool_selection == "Research Advisor":
     st.title("Research Advisor")
     st.write("Optimized For ChatGPT (GPT-4)")
