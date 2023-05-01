@@ -194,11 +194,6 @@ if tool_selection == "Assistant Extraction Tool":
     else:
         st.warning("Please complete all fields and upload a PDF file.")
     
-st.sidebar.markdown("### API Key")
-api_key = st.sidebar.text_input("Enter your OpenAI API key:", type="password")
-if api_key:
-    openai.api_key = api_key
-
 st.sidebar.markdown("### About")
 if st.sidebar.button("Show About"):
     st.sidebar.markdown(
