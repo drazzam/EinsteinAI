@@ -108,8 +108,8 @@ if tool_selection == "Research Advisor Tool":
 
  Could you criticize and review the following {section_to_criticize} section in the manuscript draft, and provide a detailed feedback report on how to improve it from all aspects including: appropriate writing and proofreading, appropriate methodology and sequence, and the science within the section itself. Generate a comprehensive professional report and recommendations for this manuscript, please!
 
- That's the {section_to_criticize} section:'''
-    {section}
+ That's the {section_to_criticize} section:
+ {section}'''
 
      return prompt
 
