@@ -59,8 +59,6 @@ if tool_selection == "Research Advisor Tool":
         if manuscript_title and research_paper_type and section_to_criticize and section:
             # Generate the prompt
             prompt = create_prompt(manuscript_title, research_paper_type, section_to_criticize)
-            st.write("Generated Prompt:")
-            st.write(prompt)
             # Display the prompt in a textbox and add a button to copy its content
             prompt_textbox = st.text_area("Generated Prompt (You can copy it from here):", value=prompt, height=150)
             copy_button = st.button("Copy Generated Prompt to Clipboard")
