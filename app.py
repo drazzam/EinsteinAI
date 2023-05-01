@@ -1,8 +1,4 @@
 import streamlit as st
-
-# Set page configuration at the beginning of the script
-st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state="expanded", cache_clear_on_refresh=True)
-
 from streamlit import components
 import docx
 import io
