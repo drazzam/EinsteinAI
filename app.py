@@ -22,7 +22,7 @@ tool_selection = st.sidebar.radio("Select a tool:", [
     "Risk of Bias Assessment Tool",
     "Cover Letter Generator",
     "Systematic Review and Meta-analysis Ideas Generator",
-    "Research Advisor Tool",
+    "Research Advisor",
     "Statistical Plan Consultant Tool",
     "Meta-analysis Statistical Plan Consultant",
     "Sample Size Calculator Tool",
@@ -31,8 +31,8 @@ tool_selection = st.sidebar.radio("Select a tool:", [
     "Assistant Extraction Tool",
 ])
 
-if tool_selection == "Research Advisor Tool":
-  st.title("Research Advisor Tool")
+if tool_selection == "Research Advisor":
+  st.title("Research Advisor")
   st.write("Optimized For ChatGPT (GPT-4)")
     
   def copy_text_to_clipboard(text):
