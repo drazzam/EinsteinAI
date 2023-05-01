@@ -14,14 +14,12 @@ from docx.enum.text import WD_BREAK
 import requests
 
 # Streamlit app
-st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state="expanded", cache_clear_on_refresh=True)
 
 # Add logo
 st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png')
 
 st.sidebar.markdown("##### Developed by Cerebrovascular Research Lab at Albert Einstein College of Medicine")
-
-st.set_page_config(cache_clear_on_refresh=True, initial_sidebar_state="auto")
 
 tool_selection = st.sidebar.radio("Select a tool:", [
     "Risk of Bias Assessment Tool",
@@ -83,4 +81,3 @@ if st.sidebar.button("Show About"):
     st.sidebar.markdown(
         "This Application Was Developed By:  \n  \n Ahmed Y. Azzam, MS  \n Muhammed Amir Essibayi, MD  \n  \n Under Supervision of Cerebrovascular Research Lab Principal Investigator:  \n  \n David Altschul, MD"
     )
-
