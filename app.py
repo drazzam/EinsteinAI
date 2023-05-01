@@ -38,7 +38,7 @@ if tool_selection == "Research Advisor Tool":
   def copy_text_to_clipboard(text):
    b64_text = base64.b64encode(text.encode()).decode()
    components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
-       <button onclick="copyTextToClipboard()">Copy Generated Prompt to Clipboard</button>
+       st.button(<button onclick="copyTextToClipboard()">Copy Generated Prompt to Clipboard</button>)
        <script>
        function copyTextToClipboard() {{
            var copyText = document.getElementById("text_to_copy");
@@ -68,7 +68,7 @@ if tool_selection == "Research Advisor Tool":
           prompt = create_prompt(manuscript_title, research_paper_type, section_to_criticize)
           # Display the prompt in a textbox and add a button to copy its content
           prompt_textbox = st.text_area("Generated Prompt:", value=prompt, height=150)
-          copy_button= st.button(copy_text_to_clipboard(prompt))
+          copy_text_to_clipboard(prompt)
       else:
           st.error("Please fill in all the input fields before generating the prompt.")
 
