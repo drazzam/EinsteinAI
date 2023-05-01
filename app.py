@@ -12,64 +12,6 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.text import WD_BREAK
 import requests
 
-def generate_cover_letter(title, journal, abstract, author):
-    cover_letter = f"""Dear Editor,
-I am submitting our manuscript entitled "{title}" for consideration for publication in {journal}. Our paper presents the following research:
-{abstract}
-We believe our research significantly contributes to the field and would be of interest to the readers of {journal}. We kindly request you to consider our manuscript for publication.
-Thank you for your time and consideration.
-Sincerely,
-{author}
-"""
-
-    return cover_letter
-
-def save_cover_letter_to_docx(cover_letter, filename):
-    doc = docx.Document()
-    doc.add_paragraph(cover_letter)
-    doc.save(filename)
-
-# def assistant extraction tool
-def process_outcomes(pdf_file, outcomes, groups, openai_api_key):
-    # Extract text from the PDF file
-    text = process_pdf(pdf_file, openai_api_key)
-    
-    # Perform the extraction using the OpenAI API
-    extracted_data = {}
-    for group in groups:
-        extracted_data[group] = {}
-        for outcome in outcomes:
-            prompt = f"Extract the {outcome} for the {group} from the following research paper: {text}"
-            response = openai.Completion.create(
-                engine="text-davinci-003",
-                prompt=prompt,
-                max_tokens=100,
-                n=1,
-                stop=None,
-                temperature=0.7,
-            )
-            extracted_data[group][outcome] = response.choices[0].text.strip()
-            
-    return extracted_data
-
-def save_extracted_data_to_docx(extracted_data, filename):
-    doc = docx.Document()
-
-    for group, outcomes in extracted_data.items():
-        doc.add_heading(group, level=1)
-        for outcome, value in outcomes.items():
-            doc.add_paragraph(f"{outcome}: {value}")
-
-    doc.save(filename)    
-
-def process_pdf(pdf_file):
-    pdf_reader = PyPDF2.PdfFileReader(pdf_file)
-    text = ""
-    for page_num in range(pdf_reader.numPages):
-        text += pdf_reader.getPage(page_num).extractText()
-
-    return text
-
 # Streamlit app
 st.set_page_config(page_title="EinsteinAI", layout="wide", initial_sidebar_state="expanded")
 
@@ -121,6 +63,14 @@ if tool_selection == "Research Advisor Tool":
             st.write(prompt)
         else:
             st.error("Please fill in all the input fields before generating the prompt.")
+      # Display the prompt in a textbox and add a button to copy its content
+            prompt_textbox = st.text_area("Generated Prompt (You can copy it from here):", value=prompt, height=150)
+            copy_button = st.button("Copy Generated Prompt to Clipboard")
+            if copy_button:
+                st.caching.cache.clear_cache()  # To avoid clipboard caching issue
+                st.experimental_set_query_params()  # Reset the query params to avoid copying multiple times
+                st.copy(prompt)  # Copy the text to the clipboard
+                st.success("Generated Prompt copied to clipboard!")
 
 if tool_selection == "Assistant Extraction Tool":
     st.title("Assistant Extraction Tool")
