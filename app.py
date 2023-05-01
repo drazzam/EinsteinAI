@@ -20,7 +20,7 @@ st.sidebar.markdown("##### Developed by Cerebrovascular Research Lab at Albert E
 
 tool_selection = st.sidebar.radio("Select a tool:", [
     "Risk of Bias Assessment Tool",
-    "Cover Letter Generator",
+    "Medical Trends Analyzer",
     "Systematic Review and Meta-analysis Ideas Generator",
     "Research Advisor",
     "Statistical Plan Consultant Tool",
@@ -28,7 +28,7 @@ tool_selection = st.sidebar.radio("Select a tool:", [
     "Sample Size Calculator Tool",
     "Abstract and Keywords Generator",
     "Virtual Librarian Tool",
-    "Assistant Extraction Tool",
+    "Funding Opportunities Finder",
 ])
 
 if tool_selection == "Research Advisor":
