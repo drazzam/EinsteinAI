@@ -41,17 +41,17 @@ if tool_selection == "Research Advisor Tool":
   st.write("Optimized For ChatGPT (GPT-4)")
     
   def copy_text_to_clipboard(text):
-  b64_text = base64.b64encode(text.encode()).decode()
-  components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
-      <button onclick="copyTextToClipboard()">Copy Generated Prompt to Clipboard</button>
-      <script>
-      function copyTextToClipboard() {{
-          var copyText = document.getElementById("text_to_copy");
-          copyText.select();
-          copyText.setSelectionRange(0, 99999);
-          document.execCommand("copy");
-      }}
-      </script>''', height=60)
+   b64_text = base64.b64encode(text.encode()).decode()
+   components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
+       <button onclick="copyTextToClipboard()">Copy Generated Prompt to Clipboard</button>
+       <script>
+       function copyTextToClipboard() {{
+           var copyText = document.getElementById("text_to_copy");
+           copyText.select();
+           copyText.setSelectionRange(0, 99999);
+           document.execCommand("copy");
+       }}
+       </script>''', height=60)
 
   # Input fields
   manuscript_title = st.text_input("Manuscript Title:")
