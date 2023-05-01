@@ -61,9 +61,7 @@ if tool_selection == "Research Advisor Tool":
             prompt = create_prompt(manuscript_title, research_paper_type, section_to_criticize)
             st.write("Generated Prompt:")
             st.write(prompt)
-        else:
-            st.error("Please fill in all the input fields before generating the prompt.")
-      # Display the prompt in a textbox and add a button to copy its content
+            # Display the prompt in a textbox and add a button to copy its content
             prompt_textbox = st.text_area("Generated Prompt (You can copy it from here):", value=prompt, height=150)
             copy_button = st.button("Copy Generated Prompt to Clipboard")
             if copy_button:
@@ -71,34 +69,9 @@ if tool_selection == "Research Advisor Tool":
                 st.experimental_set_query_params()  # Reset the query params to avoid copying multiple times
                 st.copy(prompt)  # Copy the text to the clipboard
                 st.success("Generated Prompt copied to clipboard!")
-
-if tool_selection == "Assistant Extraction Tool":
-    st.title("Assistant Extraction Tool")
-
-    st.markdown("Upload the research paper as a PDF file:")
-    pdf_file = st.file_uploader("", type=["pdf"])
-
-    st.markdown("Enter The Outcomes To Be Extracted From The Paper (separated by commas):")
-    outcomes_input = st.text_input("", key="outcomes_input")
-    outcomes = [outcome.strip() for outcome in outcomes_input.split(",")]
-
-    st.markdown("Enter The Targeted Populations For The Outcomes Within The Paper (separated by commas):")
-    groups_input = st.text_input("", key="groups_input")
-    groups = [group.strip() for group in groups_input.split(",")]
-
-    if pdf_file and outcomes and groups:
-        if api_key:
-            openai.api_key = api_key
-            extracted_data = process_outcomes(pdf_file, outcomes, groups, api_key)
-            st.write(extracted_data)
-
-            filename = "extraction_results.docx"
-            save_extracted_data_to_docx(extracted_data, filename)
-            st.markdown(f"[Download Extraction Results]({filename})", unsafe_allow_html=True)
         else:
-            st.error("Please enter your OpenAI API key in the sidebar.")
-    else:
-        st.warning("Please complete all fields and upload a PDF file.")
+            st.error("Please fill in all the input fields before generating the prompt.")
+
     
 st.sidebar.markdown("### About")
 if st.sidebar.button("Show About"):
