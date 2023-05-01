@@ -38,7 +38,7 @@ if tool_selection == "Research Advisor":
 def copy_text_to_clipboard(text):
     b64_text = base64.b64encode(text.encode()).decode()
     components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
-    <button onclick="copyTextToClipboard()" style="background-color: #f63366; color: white; border-radius: 5px; padding: 0.5em 1em; font-size: 1em;">Copy Generated Prompt to Clipboard</button>
+    <button onclick="copyTextToClipboard()" style="background-color: #010514; color: white; border-radius: 5px; padding: 0.5em 1em; font-size: 1em;">Copy Generated Prompt to Clipboard</button>
     <script>
     function copyTextToClipboard() {{
     var copyText = document.getElementById("text_to_copy");
