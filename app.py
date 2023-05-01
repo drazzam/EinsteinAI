@@ -48,11 +48,7 @@ if tool_selection == "Research Advisor Tool":
 
     # Function to create the prompt
     def create_prompt(manuscript_title, research_paper_type, section_to_criticize):
-        prompt = f'''This a draft manuscript proposed for a research paper entitled "{manuscript_title}" which is a {research_paper_type} article.
-    Could you criticize and review the following {section_to_criticize} section in the manuscript draft, and provide a detailed feedback report on how to improve it from all aspects including: appropriate writing and proofreading, appropriate methodology and sequence, and the science within the section itself. Generate a comprehensive professional report and recommendations for this manuscript, please!
-    That's the {section_to_criticize} section:
-    {section}'''
-
+        prompt = f'''This a draft manuscript proposed for a research paper entitled "{manuscript_title}" which is a {research_paper_type} article. Could you criticize and review the following {section_to_criticize} section in the manuscript draft, and provide a detailed feedback report on how to improve it from all aspects including: appropriate writing and proofreading, appropriate methodology and sequence, and the science within the section itself. Generate a comprehensive professional report and recommendations for this manuscript, please! That's the {section_to_criticize} section: {section}'''
         return prompt
 
     if generate_button:
@@ -60,7 +56,7 @@ if tool_selection == "Research Advisor Tool":
             # Generate the prompt
             prompt = create_prompt(manuscript_title, research_paper_type, section_to_criticize)
             # Display the prompt in a textbox and add a button to copy its content
-            prompt_textbox = st.text_area("Generated Prompt (You can copy it from here):", value=prompt, height=150)
+            prompt_textbox = st.text_area("Generated Prompt:", value=prompt, height=150)
             copy_button = st.button("Copy Generated Prompt to Clipboard")
             if copy_button:
                 st.caching.cache.clear_cache()  # To avoid clipboard caching issue
