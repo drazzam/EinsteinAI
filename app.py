@@ -1,16 +1,9 @@
 import streamlit as st
 from streamlit import components
-import docx
 import io
 import base64
-import openai
-import PyPDF2
-from docx.shared import Pt
 import pdfkit
 from io import BytesIO
-from docx.shared import Pt
-from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.enum.text import WD_BREAK
 import requests
 
 # Add logo
@@ -202,7 +195,6 @@ elif tool_selection == "Statistical Plan Consultant":
     multiple_comparisons = st.text_input("Do you need to adjust for multiple comparisons in your analysis?")
     implications = st.text_input("What are the expected implications of your study for theory and practice?")
     
-
     # Button to generate the prompt
     generate_button = st.button("Generate Prompt")
 
