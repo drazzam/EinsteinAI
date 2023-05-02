@@ -60,7 +60,7 @@ if tool_selection == "Medical Trends Analyzer":
         return prompt
 
     if generate_button:
-        if manuscript_title and research_paper_type and section_to_criticize and section:
+        if topic:
             # Generate the prompt
             prompt = create_prompt(topic)
             # Display the prompt in a textbox and add a button to copy its content
