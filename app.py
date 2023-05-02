@@ -97,7 +97,7 @@ elif tool_selection == "Systematic Review and Meta-analysis Ideas Generator":
 
     # Function to create the prompt
     def create_prompt(specialty, fields, topics, research_question):
-        prompt = f'''Hello, generate me a list of innovative, relevant, novel, rigorous, widely disseminated and impactful ideas for systematic reviews and meta-analyses about {specialty}, {fields}, {topics}, and {research_question} that would make a significant contribution to the fields of interest, address the research questions, and impact the scientific community. Consider potential sources of bias, new methodologies or techniques, emerging trends or controversies, overlooked variables, or gaps in current literature.'''
+        prompt = f'''Hello, generate me a list of innovative, relevant, novel, rigorous, widely disseminated and impactful ideas for systematic reviews and meta-analyses about {specialty} as research specialty/specialties of interest, {fields} as research field(s) of interest, {topics} as research topic(s) of interest, and {research_question} as the most interesting research question(s) for our work that would make a significant contribution to the fields of interest, address the research questions, and impact the scientific community. Consider potential sources of bias, new methodologies or techniques, emerging trends or controversies, overlooked variables, or gaps in current literature.'''
         return prompt
 
     if generate_button:
