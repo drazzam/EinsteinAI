@@ -34,6 +34,7 @@ tool_selection = st.sidebar.radio("Select a tool:", [
 if tool_selection == "Medical Trends Analyzer":
     st.title("Medical Trends Analyzer")
     st.write("Optimized for Microsoft Bing Chat")
+    st.write("Click Here For Tutorial")
     
     def copy_text_to_clipboard(text):
         b64_text = base64.b64encode(text.encode()).decode()
