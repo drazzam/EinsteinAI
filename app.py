@@ -12,15 +12,15 @@ st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo
 st.sidebar.markdown("##### Developed by Cerebrovascular Research Lab at Albert Einstein College of Medicine")
 
 tool_selection = st.sidebar.radio("Select a tool:", [
-    "Risk of Bias Assessment Tool",
+    "Risk of Bias Assessment",
     "Medical Trends Analyzer",
     "Systematic Review and Meta-analysis Ideas Generator",
     "Research Advisor",
     "Statistical Plan Consultant",
     "Meta-analysis Statistical Plan Consultant",
-    "Sample Size Calculator Tool",
+    "Sample Size Calculator",
     "Abstract and Keywords Generator",
-    "Virtual Librarian Tool",
+    "Search Strategy Formulator",
     "Funding Opportunities Finder",
 ])
 
