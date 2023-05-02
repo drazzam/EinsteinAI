@@ -23,7 +23,7 @@ tool_selection = st.sidebar.radio("Select a tool:", [
     "Medical Trends Analyzer",
     "Systematic Review and Meta-analysis Ideas Generator",
     "Research Advisor",
-    "Statistical Plan Consultant Tool",
+    "Statistical Plan Consultant",
     "Meta-analysis Statistical Plan Consultant",
     "Sample Size Calculator Tool",
     "Abstract and Keywords Generator",
@@ -152,7 +152,75 @@ elif tool_selection == "Research Advisor":
             copy_text_to_clipboard(prompt)
         else:
             st.error("Please fill in all the input fields before generating the prompt.")
+
+elif tool_selection == "Statistical Plan Consultant":
+    st.title("Statistical Plan Consultant")
+    st.write("Optimized For ChatGPT (GPT-4)")
+
+    def copy_text_to_clipboard(text):
+        b64_text = base64.b64encode(text.encode()).decode()
+        components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
+        <button onclick="copyTextToClipboard()" style="background-color: #010514; color: white; border-radius: 5px; padding: 0.5em 1em; font-size: 1em;">Copy Generated Prompt to Clipboard</button>
+        <script>
+        function copyTextToClipboard() {{
+        var copyText = document.getElementById("text_to_copy");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        }}
+        </script>''', height=60)
+
+    # Input fields
+    summary = st.text_input("Please provide a brief summary of your research question:")
+    scope = st.text_input("What is the scope of your research? Is it exploratory, descriptive, or explanatory?")
+    primary_objectives = st.text_input("What are the primary objectives of your study?")
+    secondary_objectives = st.text_input("What are the secondary objectives of your study?")
+    hypothesis = st.text_input("What is your research hypothesis?")
+    null_hypothesis = st.text_input("What is your null hypothesis?")
+    data_type = st.text_input("What type of data do you have? Is it continuous, categorical, binary, or mixed?")
+    level = st.text_input("What is the level of measurement of the variables in your study? Are they nominal, ordinal, interval, or ratio?")
+    collection = st.text_input("How was the data collected? Was it retrospective, prospective, or a combination of both?")
+    sampling = st.text_input("What is the sampling method? Is it random, stratified, or cluster sampling?")
+    sample_size = st.text_input("What is the size of your sample?")
+    desired_sample = st.text_input("Was your sample size the desired number for the study, or less than the desired sample size number?")
+    bias = st.text_input("Are there any potential biases in the data?")
+    missing_data = st.text_input("Do you have any missing data? If so, what percentage of your data is missing")
+    limitations = st.text_input("What are the limitations of your study?")
+    outliers = st.text_input("Does your data have any outliers or influential observations that need to be addressed?")
+    normality = st.text_input("Have you checked for normality or other assumptions of the statistical tests you plan to use?")
+    study_design = st.text_input("What is your study design? Is it experimental, observational, or a combination of both?")
+    groups = st.text_input("Are the groups independent or dependent?")
+    cofounding_variables = st.text_input("Are there any confounding variables that need to be controlled for in your analysis?")
+    variables_interactions = st.text_input("Are there any interactions between variables that need to be considered in your analysis?")
+    dependent_variables = st.text_input("What are the dependent variables in your study?")
+    independent_variables = st.text_input("What are the independent variables in your study?")
+    recommendations = st.text_input("What are the recommendations for future research?")
+    data_format = st.text_input("What is the data format? Is it in raw form, cleaned, or transformed?")
+    desired_significance = st.text_input("What is the desired level of significance and power?")
+    effect_size = st.text_input("What is the effect size you are interested in detecting?")
+    population_parameter = st.text_input("Are you interested in estimating a population parameter or making a prediction?")
+    multiple_comparisons = st.text_input("Do you need to adjust for multiple comparisons in your analysis?")
+    implications = st.text_input("What are the expected implications of your study for theory and practice?")
     
+
+    # Button to generate the prompt
+    generate_button = st.button("Generate Prompt")
+
+    # Function to create the prompt
+    def create_prompt(summary, scope, primary_objectives, secondary_objectives, hypothesis, null_hypothesis, data_type, level, collection, sampling, sample_size, desired_sample, bias, missing_data, limitations, outliers, noramlity, study_design, groups, cofounding_variables, variables_interactions, dependent_variables, independent_variables, recommendations, data_format, desired_significance, effect_size, population_parameter, multiple_comparisons, implications):
+        prompt = f'''1. Please provide a brief summary of your research question: {summary} 2. What is the scope of your research? Is it exploratory, descriptive, or explanatory? {scope} 3. What are the primary objectives of your study? {primary_objectives} 4. What are the secondary objectives of your study? {secondary_objectives} 5. What is your research hypothesis? {hypothesis} 6. What is your null hypothesis? {null_hypothesis} 7. What type of data do you have? Is it continuous, categorical, binary, or mixed?  {data_type} 8. What is the level of measurement of the variables in your study? Are they nominal, ordinal, interval, or ratio? {level} 9. How was the data collected? Was it retrospective, prospective, or a combination of both? {collection} 10. What is the sampling method? Is it random, stratified, or cluster sampling? {sampling} 11. What is the size of your sample? {sample_size} 12. Was your sample size the desired number for the study, or less than the desired sample size number? {desired_sample} 13. Are there any potential biases in the data? {bias} 14. Do you have any missing data? If so, what percentage of your data is missing? {missing_data} 15. What are the limitations of your study? {limitations} 16. Does your data have any outliers or influential observations that need to be addressed? {outliers} 17. Have you checked for normality or other assumptions of the statistical tests you plan to use? {normality} 18. What is your study design? Is it experimental, observational, or a combination of both? {study_design} 19. Are the groups independent or dependent? {groups} 20. Are there any confounding variables that need to be controlled for in your analysis? {cofounding_variables} 21. Are there any interactions between variables that need to be considered in your analysis? {variables_interactions} 22. What are the dependent variables in your study? {dependent_variables} 23. What are the independent variables in your study? {independent_variables} 24. What are the recommendations for future research? {recommendations} 25. What is the data format? Is it in raw form, cleaned, or transformed? {data_format} 26. What is the desired level of significance and power? {desired_significance} 27. What is the effect size you are interested in detecting? {effect_size} 28. Are you interested in estimating a population parameter or making a prediction? {population_parameter} 29. Do you need to adjust for multiple comparisons in your analysis? {multiple_comparisons} 30. What are the expected implications of your study for theory and practice? {implications} Based on the answers to these questions, a comprehensive statistical plan should be generated to address the specific needs of the study. The plan should include a detailed description of the statistical methods to be used, as well as any necessary assumptions, procedures, and tests. It should also outline the specific steps to be taken to analyze the data and report the results in a clear and concise manner. The statistical plan should be comprehensive, organized in a step-by-step manner and easy to follow and apply.'''
+        return prompt
+
+    if generate_button:
+        if summary and scope and primary_objectives and secondary_objectives and hypothesis and null_hypothesis and data_type and level and collection and sampling and sample_size and desired_sample and bias and missing_data and limitations and outliers and noramlity and study_design and groups and cofounding_variables and variables_interactions and dependent_variables and independent_variables and recommendations and data_format and desired_significance and effect_size and population_parameter and multiple_comparisons and implications:
+            # Generate the prompt
+            prompt = create_prompt(summary, scope, primary_objectives, secondary_objectives, hypothesis, null_hypothesis, data_type, level, collection, sampling, sample_size, desired_sample, bias, missing_data, limitations, outliers, noramlity, study_design, groups, cofounding_variables, variables_interactions, dependent_variables, independent_variables, recommendations, data_format, desired_significance, effect_size, population_parameter, multiple_comparisons, implications)
+            # Display the prompt in a textbox and add a button to copy its content
+            prompt_textbox = st.text_area("Generated Prompt:", value=prompt, height=150)
+            copy_text_to_clipboard(prompt)
+        else:
+            st.error("Please fill in all the input fields before generating the prompt.")            
+            
 st.sidebar.markdown("### About")
 if st.sidebar.button("Show About"):
     st.sidebar.markdown(
