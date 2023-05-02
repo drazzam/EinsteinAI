@@ -101,7 +101,7 @@ elif tool_selection == "Systematic Review and Meta-analysis Ideas Generator":
         return prompt
 
     if generate_button:
-        if speciality and fields and topics and research_question:
+        if specialty and fields and topics and research_question:
             # Generate the prompt
             prompt = create_prompt(specialty, fields, topics, research_question)
             # Display the prompt in a textbox and add a button to copy its content
