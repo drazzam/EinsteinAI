@@ -96,14 +96,14 @@ elif tool_selection == "Systematic Review and Meta-analysis Ideas Generator":
     generate_button = st.button("Generate Prompt")
 
     # Function to create the prompt
-    def create_prompt(topic):
+    def create_prompt(speciality, fields, topics, research_question):
         prompt = f'''Hello, generate me a list of innovative, relevant, novel, rigorous, widely disseminated and impactful ideas for systematic reviews and meta-analyses about {specialty}, {fields}, {topics}, and {research_question} that would make a significant contribution to the fields of interest, address the research questions, and impact the scientific community. Consider potential sources of bias, new methodologies or techniques, emerging trends or controversies, overlooked variables, or gaps in current literature.'''
         return prompt
 
     if generate_button:
         if speciality and fields and topics and research_question:
             # Generate the prompt
-            prompt = create_prompt(topic)
+            prompt = create_prompt(speciality, fields, topics, research_question)
             # Display the prompt in a textbox and add a button to copy its content
             prompt_textbox = st.text_area("Generated Prompt:", value=prompt, height=150)
             copy_text_to_clipboard(prompt)
