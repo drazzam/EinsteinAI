@@ -70,7 +70,7 @@ if tool_selection == "Medical Trends Analyzer":
             st.error("Please fill in all the input fields before generating the prompt.")    
 
 elif tool_selection == "Systematic Review and Meta-analysis Ideas Generator":
-    st.title("Systematic Review and Meta-analysis Ideas Generatorr")
+    st.title("Systematic Review and Meta-analysis Ideas Generator")
     st.write("Optimized for ChatGPT (GPT-4)")
     
     def copy_text_to_clipboard(text):
