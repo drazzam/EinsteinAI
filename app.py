@@ -212,6 +212,46 @@ elif tool_selection == "Statistical Plan Consultant":
             copy_text_to_clipboard(prompt)
         else:
             st.error("Please fill in all the input fields before generating the prompt.")            
+
+if tool_selection == "Abstract and Keywords Generator":
+    st.title("Abstract and Keywords Generator")
+    st.write("Optimized for Humata AI")
+    st.markdown("[Click Here For Tutorial](https://www.youtube.com/watch?v=VIDEO_ID)")
+    
+    def copy_text_to_clipboard(text):
+        b64_text = base64.b64encode(text.encode()).decode()
+        components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
+        <button onclick="copyTextToClipboard()" style="background-color: #010514; color: white; border-radius: 5px; padding: 0.5em 1em; font-size: 1em;">Copy Generated Prompt to Clipboard</button>
+        <script>
+        function copyTextToClipboard() {{
+        var copyText = document.getElementById("text_to_copy");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        }}
+        </script>''', height=60)
+
+    # Input fields
+    manuscript_title = st.text_input("Enter The Manuscript/Draft Title:")
+    paper_type = st.text_input("Enter The Research Paper/Draft Type: (e.g. meta-analysis, retrospective study, review article)")
+
+    # Button to generate the prompt
+    generate_button = st.button("Generate Prompt")
+
+    # Function to create the prompt
+    def create_prompt(manuscript_title, paper_type):
+        prompt = f'''Please generate an abstract and relevant keywords for a draft manuscript titled "{manuscript_title}". The manuscript is a {paper_type} research paper in PDF format. The abstract should be around 250 words and should follow the format of Introduction, Methods, Results, and Conclusions. Additionally, please provide five appropriate keywords for the manuscript. Your help is greatly appreciated.'''
+        return prompt
+
+    if generate_button:
+        if manuscript_title and paper_type:
+            # Generate the prompt
+            prompt = create_prompt(manuscript_title, paper_type)
+            # Display the prompt in a textbox and add a button to copy its content
+            prompt_textbox = st.text_area("Generated Prompt:", value=prompt, height=150)
+            copy_text_to_clipboard(prompt)
+        else:
+            st.error("Please fill in all the input fields before generating the prompt.")  
             
 st.sidebar.markdown("### About")
 if st.sidebar.button("Show About"):
