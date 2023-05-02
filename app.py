@@ -69,6 +69,47 @@ if tool_selection == "Medical Trends Analyzer":
         else:
             st.error("Please fill in all the input fields before generating the prompt.")    
 
+elif tool_selection == "Systematic Review and Meta-analysis Ideas Generator":
+    st.title("Systematic Review and Meta-analysis Ideas Generatorr")
+    st.write("Optimized for ChatGPT (GPT-4)")
+    
+    def copy_text_to_clipboard(text):
+        b64_text = base64.b64encode(text.encode()).decode()
+        components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
+        <button onclick="copyTextToClipboard()" style="background-color: #010514; color: white; border-radius: 5px; padding: 0.5em 1em; font-size: 1em;">Copy Generated Prompt to Clipboard</button>
+        <script>
+        function copyTextToClipboard() {{
+        var copyText = document.getElementById("text_to_copy");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        }}
+        </script>''', height=60)
+
+    # Input fields
+    speciality = st.text_input("What are your research specialties of interest? (e.g. neurosurgery, neurology)")
+    fields = st.text_input("What are your research fields of interest? (e.g. cerebrovascular surgery, skull base surgery, spine surgery)")
+    topics = st.text_input("What are your research topics of interest? (e.g. cerebral aneurysms, meningiomas, stroke, vertebroplasty)")
+    research_question = st.text_input("What are the most interesting research questions for your work?")
+
+    # Button to generate the prompt
+    generate_button = st.button("Generate Prompt")
+
+    # Function to create the prompt
+    def create_prompt(topic):
+        prompt = f'''Hello, generate me a list of innovative, relevant, novel, rigorous, widely disseminated and impactful ideas for systematic reviews and meta-analyses about {specialty}, {fields}, {topics}, and {research_question} that would make a significant contribution to the fields of interest, address the research questions, and impact the scientific community. Consider potential sources of bias, new methodologies or techniques, emerging trends or controversies, overlooked variables, or gaps in current literature.'''
+        return prompt
+
+    if generate_button:
+        if speciality and fields and topics and research_question:
+            # Generate the prompt
+            prompt = create_prompt(topic)
+            # Display the prompt in a textbox and add a button to copy its content
+            prompt_textbox = st.text_area("Generated Prompt:", value=prompt, height=150)
+            copy_text_to_clipboard(prompt)
+        else:
+            st.error("Please fill in all the input fields before generating the prompt.")                
+            
                           
 elif tool_selection == "Research Advisor":
     st.title("Research Advisor")
