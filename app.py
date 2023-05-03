@@ -511,7 +511,6 @@ if tool_selection == "Funding Opportunities Finder":
         else:
             st.error("Please fill in all the input fields before generating the prompt."            
             
-
 st.sidebar.markdown("### About")
 if st.sidebar.button("Show About"):
     st.sidebar.markdown(
