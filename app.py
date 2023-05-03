@@ -85,7 +85,63 @@ After rating the bias, fill the following template with the results:
             else:
                 st.error("Please fill in all the input fields before generating the prompt.")     
    
+    if selected_option == "ROBINS-I":
+        def copy_text_to_clipboard(text):
+            b64_text = base64.b64encode(text.encode()).decode()
+            components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
+            <button onclick="copyTextToClipboard()" style="background-color: #010514; color: white; border-radius: 5px; padding: 0.5em 1em; font-size: 1em;">Copy Generated Prompt to Clipboard</button>
+            <script>
+            function copyTextToClipboard() {{
+            var copyText = document.getElementById("text_to_copy");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            }}
+            </script>''', height=60)
 
+        # Button to generate the prompt
+        generate_button = st.button("Generate Prompt")
+
+        # Function to create the prompt
+        def create_prompt(paper_title, research_type):
+            prompt = f'''Please assess the risk of bias in the study provided according to the ROBINS-I tool. The study's name is "{paper_title}", which is a {research_type} study. Please rate the bias for each of the following domains as low, moderate, serious, critical, or no information:
+
+D1: Bias due to confounding
+D2: Bias due to selection of participants
+D3: Bias in classification of interventions
+D4: Bias due to deviation from intended interventions
+D5: Bias due to missing data
+D6: Bias in measurement of outcomes
+D7: Bias in selection of the reported results
+
+After assessing each domain, please provide an overall risk of bias assessment for the study. Please fill out the table below with the domain ratings and overall assessment:
+
+Study Name: {paper_title}
+
+1. Bias due to confounding:
+2. Bias due to selection of participants:
+3. Bias in classification of interventions:
+4. Bias due to deviation from intended interventions:
+5. Bias due to missing data:
+6. Bias in measurement of outcomes:
+7. Bias in selection of the reported results:
+8. Overall:
+ 
+Note 1: The only condition that the overall risk of bias assessment is low when all of items from D1 to D7 are low.
+Note 2: If there is at least one item classified as serious, then the overall assessment for risk of bias is serious.
+Note 3: If there is at least one item classified as critical, then the overall assessment for risk of bias is critical.'''
+            return prompt
+
+        if generate_button:
+            if paper_title and research_type:
+                # Generate the prompt
+                prompt = create_prompt(paper_title, research_type)
+                # Display the prompt in a textbox and add a button to copy its content
+                prompt_textbox = st.text_area("Generated Prompt:", value=prompt, height=150)
+                copy_text_to_clipboard(prompt)
+            else:
+                st.error("Please fill in all the input fields before generating the prompt.") 
+                
 if tool_selection == "Medical Trends Analyzer":
     st.title("Medical Trends Analyzer")
     st.write("Optimized for Microsoft Bing Chat")
