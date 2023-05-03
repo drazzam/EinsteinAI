@@ -511,8 +511,8 @@ if tool_selection == "Funding Opportunities Finder":
         else:
             st.error("Please fill in all the input fields before generating the prompt."            
             
-st.sidebar.markdown("### About")
-if st.sidebar.button("Show About"):
-    st.sidebar.markdown(
-        "This Application Was Developed By:  \n  \n Ahmed Y. Azzam, MD(c), MEng(c)  \n Muhammed Amir Essibayi, MD  \n  \n Under Supervision of Cerebrovascular Research Lab Principal Investigator:  \n  \n David Altschul, MD"
-    )
+# st.sidebar.markdown("### About")
+# if st.sidebar.button("Show About"):
+#     st.sidebar.markdown(
+#         "This Application Was Developed By:  \n  \n Ahmed Y. Azzam, MD(c), MEng(c)  \n Muhammed Amir Essibayi, MD  \n  \n Under Supervision of Cerebrovascular Research Lab Principal Investigator:  \n  \n David Altschul, MD"
+#     )
