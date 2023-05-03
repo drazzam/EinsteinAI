@@ -490,7 +490,7 @@ if tool_selection == "Funding Opportunities Finder":
 
     # Input fields
     field = st.text_input("Enter The Specialty/Subspecialty of Your Research: (e.g. cerebrovasular surgery, skull base surgery)")
-    country st.text_input("Enter The Country of Your Work:")
+    country = st.text_input("Enter The Country of Your Work:")
     topics = st.text_input("Enter The Topics of Interest For Your Research: (e.g. cerebral aneurysms, stroke, brain tumors)")
     
     # Button to generate the prompt
