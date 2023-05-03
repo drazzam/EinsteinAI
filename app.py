@@ -27,7 +27,7 @@ tool_selection = st.sidebar.radio("Select a tool:", [
 if tool_selection == "Risk of Bias Assessment":
     st.title("Risk of Bias Assessment")
     st.write("Optimized for ChatGPT (GPT-4)")
-    options = ["Cochrance RoB", "Newcastle-Ottawa Scale", "ROBINS-I", "STROBE"]
+    options = ["Cochrance RoB", "ROBINS-I", "STROBE"]
     selected_option = st.selectbox("Select a Risk of Bias Assessment Scale:", options)
     paper_title = st.text_input("Enter The Research Paper Tile:")
     research_type = st.text_input("Enter The Research Paper Type: (e.g. Randomized Controlled Trial, Clinical Trial, Retrospective Study, Cohort Study)")
@@ -141,7 +141,60 @@ Note 3: If there is at least one item classified as critical, then the overall a
                 copy_text_to_clipboard(prompt)
             else:
                 st.error("Please fill in all the input fields before generating the prompt.") 
-                
+
+    if selected_option == "STROBE For Observational Studies":
+        def copy_text_to_clipboard(text):
+            b64_text = base64.b64encode(text.encode()).decode()
+            components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
+            <button onclick="copyTextToClipboard()" style="background-color: #010514; color: white; border-radius: 5px; padding: 0.5em 1em; font-size: 1em;">Copy Generated Prompt to Clipboard</button>
+            <script>
+            function copyTextToClipboard() {{
+            var copyText = document.getElementById("text_to_copy");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            }}
+            </script>''', height=60)
+
+        # Button to generate the prompt
+        generate_button = st.button("Generate Prompt")
+
+        # Function to create the prompt
+        def create_prompt(paper_title, research_type):
+            prompt = f'''Please assess the risk of bias in the study provided according to the STROBE for Observational Studies tool. The study's name is "{paper_title}", which is a {research_type} study. Please rate the bias for each of the following domains as low risk, moderate risk or high risk:
+
+Methods for selecting study participants:
+Methods for measuring exposure and outcome variables:
+Methods to control cofounding:
+Design-specific sources of bias:
+Statistical methods:
+Risk of bias:
+
+After assessing each domain, please provide an overall risk of bias assessment for the study. Please fill out the table below with the domain ratings and overall assessment:
+
+Study Name: {paper_title}
+
+1. Methods for selecting study participants:
+2. Methods for measuring exposure and outcome variables:
+3. Methods to control cofounding:
+4. Design-specific sources of bias:
+5. Statistical methods:
+6. Risk of bias:
+ 
+Note 1: The only condition that the overall risk of bias assessment is low when all of items are low.
+Note 2: If there is at least one item classified as high, then the overall assessment for risk of bias is high.'''
+            return prompt
+
+        if generate_button:
+            if paper_title and research_type:
+                # Generate the prompt
+                prompt = create_prompt(paper_title, research_type)
+                # Display the prompt in a textbox and add a button to copy its content
+                prompt_textbox = st.text_area("Generated Prompt:", value=prompt, height=150)
+                copy_text_to_clipboard(prompt)
+            else:
+                st.error("Please fill in all the input fields before generating the prompt.")  
+
 if tool_selection == "Medical Trends Analyzer":
     st.title("Medical Trends Analyzer")
     st.write("Optimized for Microsoft Bing Chat")
