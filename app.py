@@ -24,9 +24,6 @@ tool_selection = st.sidebar.radio("Select a tool:", [
     "Funding Opportunities Finder",
 ])
 
-if st.button("Click me to start!"):
-    tool_selection = st.sidebar.selectbox("Select a Tool:", ["Risk of Bias Assessment", "Other Tools"])
-
 if tool_selection == "Risk of Bias Assessment":
     st.title("Risk of Bias Assessment")
     st.write("Optimized for ChatGPT (GPT-4)")
