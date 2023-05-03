@@ -598,5 +598,5 @@ elif tool_selection == "Funding Opportunities Finder":
 st.sidebar.markdown("### About")
 if st.sidebar.button("Show About"):
     st.sidebar.markdown(
-        "This Application Was Developed By:  \n  \n Ahmed Y. Azzam, MD(c), MEng(c)  \n Muhammed Amir Essibayi, MD  \n  \n Under Supervision of Cerebrovascular Research Lab Principal Investigator:  \n  \n David Altschul, MD"
+        "This Application Was Developed By:  \n  \n Ahmed Y. Azzam, MS  \n Muhammed Amir Essibayi, MD  \n  \n Under Supervision of Cerebrovascular Research Lab Principal Investigator:  \n  \n David Altschul, MD"
     )            
