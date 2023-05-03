@@ -24,6 +24,9 @@ tool_selection = st.sidebar.radio("Select a tool:", [
     "Funding Opportunities Finder",
 ])
 
+if st.button("Click me to start!"):
+    tool_selection = st.sidebar.selectbox("Select a Tool:", ["Risk of Bias Assessment", "Other Tools"])
+
 if tool_selection == "Risk of Bias Assessment":
     st.title("Risk of Bias Assessment")
     st.write("Optimized for ChatGPT (GPT-4)")
@@ -34,17 +37,17 @@ if tool_selection == "Risk of Bias Assessment":
     
     if selected_option == "Cochrance RoB":
         def copy_text_to_clipboard(text):
-        b64_text = base64.b64encode(text.encode()).decode()
-        components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
-        <button onclick="copyTextToClipboard()" style="background-color: #010514; color: white; border-radius: 5px; padding: 0.5em 1em; font-size: 1em;">Copy Generated Prompt to Clipboard</button>
-        <script>
-        function copyTextToClipboard() {{
-        var copyText = document.getElementById("text_to_copy");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999);
-        document.execCommand("copy");
-        }}
-        </script>''', height=60)
+            b64_text = base64.b64encode(text.encode()).decode()
+            components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
+            <button onclick="copyTextToClipboard()" style="background-color: #010514; color: white; border-radius: 5px; padding: 0.5em 1em; font-size: 1em;">Copy Generated Prompt to Clipboard</button>
+            <script>
+            function copyTextToClipboard() {{
+            var copyText = document.getElementById("text_to_copy");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            }}
+            </script>''', height=60)
 
         # Button to generate the prompt
         generate_button = st.button("Generate Prompt")
@@ -83,7 +86,7 @@ After rating the bias, fill the following template with the results:
                 prompt_textbox = st.text_area("Generated Prompt:", value=prompt, height=150)
                 copy_text_to_clipboard(prompt)
             else:
-                st.error("Please fill in all the input fields before generating the prompt.")    
+                st.error("Please fill in all the input fields before generating the prompt.")     
    
 
 if tool_selection == "Medical Trends Analyzer":
