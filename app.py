@@ -51,7 +51,7 @@ if tool_selection == "Risk of Bias Assessment":
 
         # Function to create the prompt
         def create_prompt(paper_title, research_type):
-            prompt = f'''Please assess the risk of bias in the {research_type} which is loaded as a PDF file, the study's name is {paper_title}. The study provided according to Version 2 of the Cochrane risk-of-bias tool for randomized trials (RoB 2) tool. Please rate the bias for each of the following domains as low risk of bias, high risk of bias, and unclear risk of bias:
+            prompt = f'''Please assess the risk of bias in the {research_type} which is loaded as a PDF file, the study's name is {paper_title}. Assess the study provided according to Version 2 of the Cochrane risk-of-bias tool for randomized trials (RoB 2) tool. Please rate the bias for each of the following domains as low risk of bias, high risk of bias, and unclear risk of bias:
 
 Random sequence generation:
 Allocation concealment:
