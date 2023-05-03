@@ -383,7 +383,7 @@ elif tool_selection == "Statistical Plan Consultant":
         else:
             st.error("Please fill in all the input fields before generating the prompt.")            
 
-if tool_selection == "Abstract and Keywords Generator":
+elif tool_selection == "Abstract and Keywords Generator":
     st.title("Abstract and Keywords Generator")
     st.write("Optimized for Humata AI")
     st.markdown("[Click Here For Tutorial](https://www.youtube.com/watch?v=VIDEO_ID)")
@@ -423,7 +423,7 @@ if tool_selection == "Abstract and Keywords Generator":
         else:
             st.error("Please fill in all the input fields before generating the prompt.")  
 
-if tool_selection == "Search Strategy Formulator":
+elif tool_selection == "Search Strategy Formulator":
     st.title("Search Strategy Formulator")
     st.write("Optimized for ChatGPT (GPT-4)")
     st.markdown("[Click Here For Tutorial](https://www.youtube.com/watch?v=VIDEO_ID)")
@@ -470,7 +470,7 @@ Based on the information you provided, please generate the appropriate MeSH term
         else:
             st.error("Please fill in all the input fields before generating the prompt.")              
 
-if tool_selection == "Funding Opportunities Finder":
+eliif tool_selection == "Funding Opportunities Finder":
     st.title("Funding Opportunities Finder")
     st.write("Optimized for Microsoft Bing Chat")
     st.markdown("[Click Here For Tutorial](https://www.youtube.com/watch?v=VIDEO_ID)")
