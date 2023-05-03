@@ -27,12 +27,12 @@ tool_selection = st.sidebar.radio("Select a tool:", [
 if tool_selection == "Risk of Bias Assessment":
     st.title("Risk of Bias Assessment")
     st.write("Optimized for ChatGPT (GPT-4)")
-    options = ["Cochrance RoB", "ROBINS-I", "STROBE For Observational Studies"]
+    options = ["Cochrance RoB 2.0", "ROBINS-I", "STROBE For Observational Studies"]
     selected_option = st.selectbox("Select a Risk of Bias Assessment Scale:", options)
     paper_title = st.text_input("Enter The Research Paper Tile:")
     research_type = st.text_input("Enter The Research Paper Type: (e.g. Randomized Controlled Trial, Clinical Trial, Retrospective Study, Cohort Study)")
     
-    if selected_option == "Cochrance RoB":
+    if selected_option == "Cochrance RoB 2.0":
         def copy_text_to_clipboard(text):
             b64_text = base64.b64encode(text.encode()).decode()
             components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
