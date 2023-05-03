@@ -2,7 +2,6 @@ import streamlit as st
 from streamlit import components
 import io
 import base64
-import pdfkit
 from io import BytesIO
 import requests
 
