@@ -498,7 +498,7 @@ elif tool_selection == "Funding Opportunities Finder":
 
     # Function to create the prompt
     def create_prompt(field, country, topics):
-        prompt = f'''Hello, could you please help me find a comprehensive and up-to-date list of grant and funding opportunities for {field} research in the {country}? Specifically, I am interested in funding options for {topics} research. Please provide links and websites for all potential funding and grant options, including both private and government funding sources. Additionally, could you provide me with information on general research funding authorities and options available in the {country}? Thank you.'''
+        prompt = f'''Hello, could you please help me find a comprehensive and up-to-date list of grant and funding opportunities for {field} research in {country}? Specifically, I am interested in funding options for {topics} research. Please provide links and websites for all potential funding and grant options, including both private and government funding sources. Additionally, could you provide me with information on general research funding authorities and options available in the {country}? Thank you.'''
         return prompt
 
     if generate_button:
