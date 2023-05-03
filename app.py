@@ -27,7 +27,7 @@ tool_selection = st.sidebar.radio("Select a tool:", [
 if tool_selection == "Risk of Bias Assessment":
     st.title("Risk of Bias Assessment")
     st.write("Optimized for ChatGPT (GPT-4)")
-    options = ["Cochrance RoB", "ROBINS-I", "STROBE"]
+    options = ["Cochrance RoB", "ROBINS-I", "STROBE For Observational Studies"]
     selected_option = st.selectbox("Select a Risk of Bias Assessment Scale:", options)
     paper_title = st.text_input("Enter The Research Paper Tile:")
     research_type = st.text_input("Enter The Research Paper Type: (e.g. Randomized Controlled Trial, Clinical Trial, Retrospective Study, Cohort Study)")
