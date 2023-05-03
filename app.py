@@ -469,6 +469,47 @@ Based on the information you provided, please generate the appropriate MeSH term
             copy_text_to_clipboard(prompt)
         else:
             st.error("Please fill in all the input fields before generating the prompt.")              
+
+if tool_selection == "Funding Opportunities Finder":
+    st.title("Funding Opportunities Finder")
+    st.write("Optimized for Microsoft Bing Chat")
+    st.markdown("[Click Here For Tutorial](https://www.youtube.com/watch?v=VIDEO_ID)")
+    
+    def copy_text_to_clipboard(text):
+        b64_text = base64.b64encode(text.encode()).decode()
+        components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
+        <button onclick="copyTextToClipboard()" style="background-color: #010514; color: white; border-radius: 5px; padding: 0.5em 1em; font-size: 1em;">Copy Generated Prompt to Clipboard</button>
+        <script>
+        function copyTextToClipboard() {{
+        var copyText = document.getElementById("text_to_copy");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        }}
+        </script>''', height=60)
+
+    # Input fields
+    field = st.text_input("Enter The Specialty/Subspecialty of Your Research: (e.g. cerebrovasular surgery, skull base surgery)")
+    country st.text_input("Enter The Country of Your Work:")
+    topics = st.text_input("Enter The Topics of Interest For Your Research: (e.g. cerebral aneurysms, stroke, brain tumors)")
+    
+    # Button to generate the prompt
+    generate_button = st.button("Generate Prompt")
+
+    # Function to create the prompt
+    def create_prompt(field, country, topics):
+        prompt = f'''Hello, could you please help me find a comprehensive and up-to-date list of grant and funding opportunities for {field} research in the {country}? Specifically, I am interested in funding options for {topics} research. Please provide links and websites for all potential funding and grant options, including both private and government funding sources. Additionally, could you provide me with information on general research funding authorities and options available in the {country}? Thank you.'''
+        return prompt
+
+    if generate_button:
+        if field and country and topics:
+            # Generate the prompt
+            prompt = create_prompt(field, country, topics)
+            # Display the prompt in a textbox and add a button to copy its content
+            prompt_textbox = st.text_area("Generated Prompt:", value=prompt, height=150)
+            copy_text_to_clipboard(prompt)
+        else:
+            st.error("Please fill in all the input fields before generating the prompt."            
             
 st.sidebar.markdown("### About")
 if st.sidebar.button("Show About"):
