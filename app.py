@@ -16,7 +16,6 @@ tool_selection = st.sidebar.radio("Select a tool:", [
     "Systematic Review and Meta-analysis Ideas Generator",
     "Research Advisor",
     "Statistical Plan Consultant",
-    "Meta-analysis Statistical Plan Consultant",
     "Sample Size Calculator",
     "Abstract and Keywords Generator",
     "Search Strategy Formulator",
@@ -383,6 +382,91 @@ elif tool_selection == "Statistical Plan Consultant":
         else:
             st.error("Please fill in all the input fields before generating the prompt.")            
 
+elif tool_selection == "Statistical Plan Consultant":
+    st.title("Statistical Plan Consultant")
+    st.write("Optimized for ChatGPT (GPT-4)")
+    st.markdown("[Click Here For Tutorial](https://www.youtube.com/watch?v=VIDEO_ID)")
+    
+    def copy_text_to_clipboard(text):
+        b64_text = base64.b64encode(text.encode()).decode()
+        components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
+        <button onclick="copyTextToClipboard()" style="background-color: #010514; color: white; border-radius: 5px; padding: 0.5em 1em; font-size: 1em;">Copy Generated Prompt to Clipboard</button>
+        <script>
+        function copyTextToClipboard() {{
+        var copyText = document.getElementById("text_to_copy");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        }}
+        </script>''', height=60)
+
+    # Input fields
+    summary = st.text_input("Please provide a brief summary of your research question:")
+    scope = st.text_input("What is the scope of your research? Is it exploratory, descriptive, or explanatory?")
+    primary_objectives = st.text_input("What are the primary objectives of your study?")
+    secondary_objectives = st.text_input("What are the secondary objectives of your study?")
+    hypothesis = st.text_input("What is your research hypothesis?")
+    null_hypothesis = st.text_input("What is your null hypothesis?")
+    expected_effect = st.text_input("What is the expected effect size of the intervention or relationship you are studying?")
+    sig_level = st.text_input("What is the significance level you want to use? (e.g. 0.05, 0.01)")
+    power = st.text_input("What is the power you want to achieve? (e.g. 0.8, 0.9)")
+    population_size = st.text_input("What is the population size you are sampling from?")
+    res_rate = st.text_input("What is the expected response rate from the population?")
+    tail = st.text_input("Is this a one-tailed or two-tailed test?")
+    var_source = st.text_input("Are there any known sources of variation or stratification in the population that need to be accounted for in the sample size calculation?")
+    const = st.text_input("Do you have any constraints on the maximum sample size you can use for your study (e.g. budget, time, resources)?")
+    ethical = st.text_input("Are there any ethical considerations that need to be taken into account when determining the sample size for your study?")
+    sampling_method = st.text_input("What type of sampling method will you use (e.g. random, stratified, cluster)?")
+    drop_out = st.text_input("What is the expected rate of attrition or drop-out from the study?")
+    complex_analysis = st.text_input("Will the study involve any complex or multi-level analyses that may impact the required sample size?")
+    subgroup = st.text_input("Are there any specific subgroups or populations within the overall population that need to be accounted for in the sample size calculation?")
+    bias_source = st.text_input("Are there any other potential sources of bias or confounding factors that may impact the sample size calculation?")
+    covar_size = st.text_input("What is the expected effect size of the covariates in the study (if any)?")
+    dep_corr = st.text_input("Are there any known dependencies or correlations between the response variable and the covariates?")
+
+    # Button to generate the prompt
+    generate_button = st.button("Generate Prompt")
+
+    # Function to create the prompt
+    def create_prompt(summary, scope, primary_objectives, secondary_objectives, hypothesis, null_hypothesis, expected_effect, sig_level, power, population_size, res_rate, tail, var_source, const, ethical, sampling_method, drop_out, complex_analysis, subgroup, bias_source, covar_size, dep_corr):
+        prompt = f'''1. Please provide a brief summary of your research question: {summary}
+2. What is the scope of your research? Is it exploratory, descriptive, or explanatory? {scope}
+3. What are the primary objectives of your study? {primary_objectives}
+4. What are the secondary objectives of your study? {secondary_objectives}
+5. What is your research hypothesis? {hypothesis}
+6. What is your null hypothesis? {null_hypothesis}
+7. What is the expected effect size of the intervention or relationship you are studying? {expected_effect}
+8. What is the significance level you want to use? {sig_level}
+9. What is the power you want to achieve? {power}
+10. What is the population size you are sampling from? {population_size}
+11. What is the expected response rate from the population? {res_rate}
+12. Is this a one-tailed or two-tailed test? {tail}
+13. Are there any known sources of variation or stratification in the population that need to be accounted for in the sample size calculation? {var_source}
+14. Do you have any constraints on the maximum sample size you can use for your study? {const}
+15. Are there any ethical considerations that need to be taken into account when determining the sample size for your study? {ethical}
+16. What type of sampling method will you use? {sampling_method}
+17. What is the expected rate of attrition or drop-out from the study? {drop_out}
+18. Will the study involve any complex or multi-level analyses that may impact the required sample size? {complex_analysis}
+19. Are there any specific subgroups or populations within the overall population that need to be accounted for in the sample size calculation? {subgroup}
+20. Are there any other potential sources of bias or confounding factors that may impact the sample size calculation? {bias_source}
+21. What is the expected effect size of the covariates in the study (if any)? {covar_size}
+22. Are there any known dependencies or correlations between the response variable and the covariates? {dep_corr}
+
+Based on the previous questions and their answers, please provide the following information: The required sample size for each group of patients, calculated based on the specified significance level, power, and effect size.
+
+Note: Please keep the response concise without explanation.'''
+        return prompt
+
+    if generate_button:
+        if summary and scope and primary_objectives and secondary_objectives and hypothesis and null_hypothesis and expected_effect and sig_level and power and population_size and res_rate and tail and var_source and const and ethical and sampling_method and drop_out and complex_analysis and subgroup and bias_source and covar_size and dep_corr:
+            # Generate the prompt
+            prompt = create_prompt(summary, scope, primary_objectives, secondary_objectives, hypothesis, null_hypothesis, expected_effect, sig_level, power, population_size, res_rate, tail, var_source, const, ethical, sampling_method, drop_out, complex_analysis, subgroup, bias_source, covar_size, dep_corr)
+            # Display the prompt in a textbox and add a button to copy its content
+            prompt_textbox = st.text_area("Generated Prompt:", value=prompt, height=150)
+            copy_text_to_clipboard(prompt)
+        else:
+            st.error("Please fill in all the input fields before generating the prompt.")             
+            
 elif tool_selection == "Abstract and Keywords Generator":
     st.title("Abstract and Keywords Generator")
     st.write("Optimized for Humata AI")
