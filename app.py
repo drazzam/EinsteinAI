@@ -24,6 +24,68 @@ tool_selection = st.sidebar.radio("Select a tool:", [
     "Funding Opportunities Finder",
 ])
 
+if tool_selection == "Risk of Bias Assessment":
+    st.title("Risk of Bias Assessment")
+    st.write("Optimized for ChatGPT (GPT-4)")
+    options = ["Cochrance RoB", "Newcastle-Ottawa Scale", "ROBINS-I", "STROBE"]
+    selected_option = st.selectbox("Select a Risk of Bias Assessment Scale:", options)
+    paper_title = st.text_input("Enter The Research Paper Tile:")
+    research_type = st.text_input("Enter The Research Paper Type: (e.g. Randomized Controlled Trial, Clinical Trial, Retrospective Study, Cohort Study)")
+    
+    if selected_option == "Cochrance RoB":
+        def copy_text_to_clipboard(text):
+        b64_text = base64.b64encode(text.encode()).decode()
+        components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
+        <button onclick="copyTextToClipboard()" style="background-color: #010514; color: white; border-radius: 5px; padding: 0.5em 1em; font-size: 1em;">Copy Generated Prompt to Clipboard</button>
+        <script>
+        function copyTextToClipboard() {{
+        var copyText = document.getElementById("text_to_copy");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        }}
+        </script>''', height=60)
+
+        # Button to generate the prompt
+        generate_button = st.button("Generate Prompt")
+
+        # Function to create the prompt
+        def create_prompt(paper_title, research_type):
+            prompt = f'''Please assess the risk of bias in the {research_type} which is loaded as a PDF file, the study's name is {paper_title}. The study provided according to Version 2 of the Cochrane risk-of-bias tool for randomized trials (RoB 2) tool. Please rate the bias for each of the following domains as low risk of bias, high risk of bias, and unclear risk of bias:
+
+Random sequence generation:
+Allocation concealment:
+Blinding of participants and personnel:
+Binding of outcome assessment:
+Incomplete outcome data:
+Selective reporting:
+Other bias:
+
+Note 1: The only condition that the overall risk of bias assessment is low when all of items are low.
+Note 2: If there is at least one item classified as high, then the overall assessment for risk of bias is high.
+
+After rating the bias, fill the following template with the results:
+
+1. Random sequence generation:
+2. Allocation concealment:
+3. Blinding of participants and personnel:
+4. Binding of outcome assessment:
+5. Incomplete outcome data:
+5. Selective reporting:
+6. Other bias:'''
+            return prompt
+
+        if generate_button:
+            if paper_title and research_type:
+                # Generate the prompt
+                prompt = create_prompt(paper_title, research_type)
+                # Display the prompt in a textbox and add a button to copy its content
+                prompt_textbox = st.text_area("Generated Prompt:", value=prompt, height=150)
+                copy_text_to_clipboard(prompt)
+            else:
+                st.error("Please fill in all the input fields before generating the prompt.")    
+   
+
 if tool_selection == "Medical Trends Analyzer":
     st.title("Medical Trends Analyzer")
     st.write("Optimized for Microsoft Bing Chat")
