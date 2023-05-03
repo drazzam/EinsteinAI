@@ -470,7 +470,7 @@ Based on the information you provided, please generate the appropriate MeSH term
         else:
             st.error("Please fill in all the input fields before generating the prompt.")              
 
-eliif tool_selection == "Funding Opportunities Finder":
+elif tool_selection == "Funding Opportunities Finder":
     st.title("Funding Opportunities Finder")
     st.write("Optimized for Microsoft Bing Chat")
     st.markdown("[Click Here For Tutorial](https://www.youtube.com/watch?v=VIDEO_ID)")
