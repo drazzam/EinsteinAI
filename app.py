@@ -422,6 +422,53 @@ if tool_selection == "Abstract and Keywords Generator":
             copy_text_to_clipboard(prompt)
         else:
             st.error("Please fill in all the input fields before generating the prompt.")  
+
+if tool_selection == "Search Strategy Formulator":
+    st.title("Search Strategy Formulator")
+    st.write("Optimized for ChatGPT (GPT-4)")
+    st.markdown("[Click Here For Tutorial](https://www.youtube.com/watch?v=VIDEO_ID)")
+    
+    def copy_text_to_clipboard(text):
+        b64_text = base64.b64encode(text.encode()).decode()
+        components.v1.html(f'''<textarea id="text_to_copy" style="opacity:0;">{text}</textarea>
+        <button onclick="copyTextToClipboard()" style="background-color: #010514; color: white; border-radius: 5px; padding: 0.5em 1em; font-size: 1em;">Copy Generated Prompt to Clipboard</button>
+        <script>
+        function copyTextToClipboard() {{
+        var copyText = document.getElementById("text_to_copy");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        }}
+        </script>''', height=60)
+
+    # Input fields
+    overview = st.text_input("Please provide a concise overview of your research topic and research idea:")
+    criteria = st.text_input("Please outline your inclusion and exclusion criteria for the literature search, specifying the characteristics that the relevant studies should possess and the ones that should be excluded:")
+    databases = st.text_input("Please list the literature databases that you intend to search, considering the most appropriate options for your research topic:")
+    
+    # Button to generate the prompt
+    generate_button = st.button("Generate Prompt")
+
+    # Function to create the prompt
+    def create_prompt(overview, criteria, databases):
+        prompt = f'''1. Please provide a concise overview of your research topic and research idea: {overview}
+
+2. Please outline your inclusion and exclusion criteria for the literature search, specifying the characteristics that the relevant studies should possess and the ones that should be excluded: {criteria}
+
+3. Please list the literature databases that you intend to search, considering the most appropriate options for your research topic: {databases}
+
+Based on the information you provided, please generate the appropriate MeSH terms, search formula, and search strategy for your literature review, ensuring that your search is comprehensive and targeted to capture all relevant studies while excluding irrelevant ones.'''
+        return prompt
+
+    if generate_button:
+        if overview and criteria and databases:
+            # Generate the prompt
+            prompt = create_prompt(overview, criteria, databases)
+            # Display the prompt in a textbox and add a button to copy its content
+            prompt_textbox = st.text_area("Generated Prompt:", value=prompt, height=150)
+            copy_text_to_clipboard(prompt)
+        else:
+            st.error("Please fill in all the input fields before generating the prompt.")              
             
 st.sidebar.markdown("### About")
 if st.sidebar.button("Show About"):
