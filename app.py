@@ -382,7 +382,7 @@ elif tool_selection == "Statistical Plan Consultant":
         else:
             st.error("Please fill in all the input fields before generating the prompt.")            
 
-elif tool_selection == "Sample Size Calculatort":
+elif tool_selection == "Sample Size Calculator":
     st.title("Sample Size Calculator")
     st.write("Optimized for ChatGPT (GPT-4)")
     st.markdown("[Click Here For Tutorial](https://www.youtube.com/watch?v=VIDEO_ID)")
