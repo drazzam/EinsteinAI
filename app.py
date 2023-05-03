@@ -8,7 +8,7 @@ import requests
 # Add logo
 st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png')
 
-st.sidebar.markdown("##### Developed by Cerebrovascular Research Lab at Albert Einstein College of Medicine")
+st.sidebar.markdown("##### An Artificial Intelligence Prompt Engineering Tool Developed by Cerebrovascular Research Lab at Albert Einstein College of Medicine")
 
 tool_selection = st.sidebar.radio("Select a tool:", [
     "Risk of Bias Assessment",
