@@ -25,6 +25,7 @@ tool_selection = st.sidebar.radio("Select a tool:", [
 if tool_selection == "Risk of Bias Assessment":
     st.title("Risk of Bias Assessment")
     st.write("Optimized for Humata AI")
+    st.markdown("[Click Here For Tutorial](https://youtu.be/b9Yp5zkEjj4)")
     options = ["Cochrane RoB 2.0", "ROBINS-I", "STROBE For Observational Studies"]
     selected_option = st.selectbox("Select a Risk of Bias Assessment Scale:", options)
     paper_title = st.text_input("Enter The Research Paper Tile:")
@@ -196,7 +197,7 @@ Note 2: If there is at least one item classified as high, then the overall asses
 if tool_selection == "Medical Trends Analyzer":
     st.title("Medical Trends Analyzer")
     st.write("Optimized for Microsoft Bing Chat")
-    st.markdown("[Click Here For Tutorial](https://www.youtube.com/watch?v=VIDEO_ID)")
+    st.markdown("[Click Here For Tutorial](https://youtu.be/xBld6pTOX3o)")
     
     def copy_text_to_clipboard(text):
         b64_text = base64.b64encode(text.encode()).decode()
@@ -235,6 +236,7 @@ if tool_selection == "Medical Trends Analyzer":
 elif tool_selection == "Systematic Review and Meta-analysis Ideas Generator":
     st.title("Systematic Review and Meta-analysis Ideas Generator")
     st.write("Optimized for ChatGPT (GPT-4)")
+    st.markdown("[Click Here For Tutorial](https://youtu.be/cAL57Bs1zoQ)")
     
     def copy_text_to_clipboard(text):
         b64_text = base64.b64encode(text.encode()).decode()
@@ -277,6 +279,7 @@ elif tool_selection == "Systematic Review and Meta-analysis Ideas Generator":
 elif tool_selection == "Research Advisor":
     st.title("Research Advisor")
     st.write("Optimized For ChatGPT (GPT-4)")
+    st.markdown("[Click Here For Tutorial](https://youtu.be/SgeiWdj97hE)")
 
     def copy_text_to_clipboard(text):
         b64_text = base64.b64encode(text.encode()).decode()
