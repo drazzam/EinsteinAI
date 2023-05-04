@@ -388,7 +388,6 @@ elif tool_selection == "Statistical Plan Consultant":
 elif tool_selection == "Sample Size Calculator":
     st.title("Sample Size Calculator")
     st.write("Optimized for ChatGPT (GPT-4)")
-    st.markdown("[Click Here For Tutorial](https://www.youtube.com/watch?v=VIDEO_ID)")
     
     def copy_text_to_clipboard(text):
         b64_text = base64.b64encode(text.encode()).decode()
@@ -473,7 +472,6 @@ Note: Please keep the response concise without explanation.'''
 elif tool_selection == "Abstract and Keywords Generator":
     st.title("Abstract and Keywords Generator")
     st.write("Optimized for Humata AI")
-    st.markdown("[Click Here For Tutorial](https://www.youtube.com/watch?v=VIDEO_ID)")
     
     def copy_text_to_clipboard(text):
         b64_text = base64.b64encode(text.encode()).decode()
@@ -513,7 +511,6 @@ elif tool_selection == "Abstract and Keywords Generator":
 elif tool_selection == "Search Strategy Formulator":
     st.title("Search Strategy Formulator")
     st.write("Optimized for ChatGPT (GPT-4)")
-    st.markdown("[Click Here For Tutorial](https://www.youtube.com/watch?v=VIDEO_ID)")
     
     def copy_text_to_clipboard(text):
         b64_text = base64.b64encode(text.encode()).decode()
@@ -560,7 +557,6 @@ Based on the information you provided, please generate the appropriate MeSH term
 elif tool_selection == "Funding Opportunities Finder":
     st.title("Funding Opportunities Finder")
     st.write("Optimized for Microsoft Bing Chat")
-    st.markdown("[Click Here For Tutorial](https://www.youtube.com/watch?v=VIDEO_ID)")
     
     def copy_text_to_clipboard(text):
         b64_text = base64.b64encode(text.encode()).decode()
