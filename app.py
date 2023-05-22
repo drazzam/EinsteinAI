@@ -5,6 +5,15 @@ import base64
 from io import BytesIO
 import requests
 
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
 # Add logo
 st.sidebar.image('https://raw.githubusercontent.com/drazzam/EinsteinAI/main/logo.png')
 
